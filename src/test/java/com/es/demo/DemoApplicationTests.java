@@ -1,5 +1,7 @@
 package com.es.demo;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.es.demo.pojo.Item;
 import com.es.demo.repository.ItemRepository;
 import org.elasticsearch.action.search.SearchResponse;
@@ -29,6 +31,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -211,5 +214,14 @@ public class DemoApplicationTests {
             startIndex = 1;
         return "set" + fieldName.substring(startIndex, startIndex + 1).toUpperCase()
                 + fieldName.substring(startIndex + 1);
+    }
+
+    @Test
+    public void testJson() {
+        Item item = new Item();
+        item.setId(1L);
+        item.setTitle("小米");
+        String s = JSONObject.toJSONString(Collections.singletonList(item), SerializerFeature.WriteNullStringAsEmpty);
+        System.out.println(s);
     }
 }
