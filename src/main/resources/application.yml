@@ -2,4 +2,4 @@ spring:
   data:
     elasticsearch:
       cluster-name: my-application
-      cluster-nodes: 192.168.26.130:9300
+      cluster-nodes: 192.168.229.128:9300
